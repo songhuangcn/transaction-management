@@ -1,0 +1,32 @@
+services:
+  # Spring Boot Application
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ghcr.io/songhuangcn/transaction-management:0.1.0
+    ports:
+      - "8080:8080"
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 4GB
+
+  # Unit Testing Container
+  runner:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: base
+    image: songhuangcn/transaction-management-base:latest
+    # Manual build, not auto-built
+    # profiles: ["manual"]
+    volumes:
+      - ./src:/app/src
+      - ./target:/app/target
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 4GB

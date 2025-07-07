@@ -1,0 +1,60 @@
+=== Create Transaction API Stress Test ===
+2025-07-09T01:46:08.637Z  INFO 85 --- [o-auto-1-exec-8] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-07-09T01:46:08.637Z  INFO 85 --- [o-auto-1-exec-8] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2025-07-09T01:46:08.638Z  INFO 85 --- [o-auto-1-exec-8] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+Create Transaction Stress Test Results:
+- Total Requests: 5000
+- Successful Requests: 5000
+- Failed Requests: 0
+- Success Rate: 100.00%
+- Total Time: 5605ms
+- Average Throughput: 892.06 requests/sec
+
+=== Update Transaction API Stress Test ===
+Update Transaction Stress Test Results:
+- Total Requests: 5000
+- Successful Requests: 5000
+- Failed Requests: 0
+- Success Rate: 100.00%
+- Total Time: 3060ms
+- Average Throughput: 1633.99 requests/sec
+
+=== Delete Transaction API Stress Test ===
+Delete Transaction Stress Test Results:
+- Total Requests: 5000
+- Successful Requests: 5000
+- Failed Requests: 0
+- Success Rate: 100.00%
+- Total Time: 1903ms
+- Average Throughput: 2627.43 requests/sec
+
+=== Mixed Operations API Stress Test ===
+Mixed Operations Stress Test Results:
+- Total Requests: 5000
+- Create Success Count: 964
+- Read Success Count: 959
+- List Success Count: 1044
+- Update Success Count: 1002
+- Delete Success Count: 1031
+- Failed Requests: 0
+- Overall Success Rate: 100.00%
+- Total Time: 2413ms
+- Average Throughput: 2072.11 operations/sec
+
+=== Read Transaction API Stress Test ===
+Read Transaction Stress Test Results:
+- Total Requests: 5000
+- Successful Requests: 5000
+- Failed Requests: 0
+- Success Rate: 100.00%
+- Total Time: 1620ms
+- Average Throughput: 3086.42 requests/sec
+
+=== Transaction List API Stress Test ===
+Transaction List Stress Test Results:
+- Total Requests: 5000
+- Successful Requests: 5000
+- Failed Requests: 0
+- Success Rate: 100.00%
+- Total Time: 1975ms
+- Average Throughput: 2531.65 requests/sec

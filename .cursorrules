@@ -1,0 +1,187 @@
+# Transaction Management System - Cursor Configuration
+
+## Project Overview
+This is a transaction management application for a banking system, used to record, view, and manage financial transactions. The application is built with Spring Boot, all data is stored in memory, with an emphasis on performance and reliability.
+
+## Tech Stack
+- **Java**: 21
+- **Spring Boot**: 3.5.3
+- **Build Tool**: Maven
+- **Data Storage**: In-memory (MemoryTransactionRepository)
+- **API Documentation**: OpenAPI 3 (SpringDoc)
+- **Testing**: JUnit 5, Spring Boot Test
+- **Containerization**: Docker, Kubernetes
+- **Dependency Management**: Maven
+
+## Project Structure
+```
+src/main/java/com/example/transaction/management/
+├── config/          # Configuration classes (OpenAPI, cache, etc.)
+├── controller/      # REST API controllers
+├── exception/       # Exception handling
+├── model/           # Data models
+├── repository/      # Data access layer
+├── service/         # Business logic layer
+└── TransactionManagementApplication.java
+```
+
+## Core Entities
+- **Transaction**: Main entity, includes id, amount, type, description, category, timestamp
+- **TransactionType**: Enum type (DEPOSIT, WITHDRAWAL, TRANSFER)
+
+## Coding Standards
+
+### Java Coding Standards
+1. **Naming Conventions**:
+   - Class names use PascalCase
+   - Method and variable names use camelCase
+   - Constants use UPPER_SNAKE_CASE
+   - Package names use lowercase and dot separation
+
+2. **Code Structure**:
+   - Each class should have a clear responsibility
+   - Use Spring dependency injection
+   - Controller layer only handles HTTP requests/responses
+   - Service layer handles business logic
+   - Repository layer handles data access
+
+3. **Exception Handling**:
+   - Use custom exception classes
+   - Implement global exception handler (@ControllerAdvice)
+   - Provide meaningful error messages
+
+### API Design Principles
+1. **RESTful API**:
+   - Use correct HTTP methods (GET, POST, PUT, DELETE)
+   - Use appropriate HTTP status codes
+   - Resource paths should be nouns, not verbs
+   - Use plural form for collection resources
+
+2. **API Path Design**:
+   - GET /api/transactions - Get all transactions
+   - GET /api/transactions/{id} - Get a specific transaction
+   - POST /api/transactions - Create a new transaction
+   - PUT /api/transactions/{id} - Update a transaction
+   - DELETE /api/transactions/{id} - Delete a transaction
+
+3. **Input Validation**:
+   - Use Bean Validation annotations (@Valid, @NotNull, @DecimalMin, etc.)
+   - Perform input validation in the Controller layer
+   - Provide clear validation error messages
+
+### Performance Requirements
+1. **Memory Management**:
+   - Use ConcurrentHashMap for thread safety
+   - Implement appropriate caching strategies
+   - Consider memory usage efficiency
+
+2. **Concurrency Handling**:
+   - Ensure all operations are thread-safe
+   - Use appropriate locking mechanisms
+   - Avoid deadlocks
+
+3. **Query Optimization**:
+   - Implement efficient data querying and filtering
+   - Support pagination
+   - Consider indexing strategies (even in memory)
+
+### Testing Requirements
+1. **Unit Testing**:
+   - Test business logic in the Service layer
+   - Test data access in the Repository layer
+   - Use JUnit 5 and Mockito
+
+2. **Integration Testing**:
+   - API testing for the Controller layer
+   - Use @SpringBootTest and TestRestTemplate
+   - Test the complete request/response flow
+
+3. **Stress Testing**:
+   - Test concurrent operations
+   - Test handling of large data volumes
+   - Performance benchmarking
+
+### Documentation Requirements
+1. **API Documentation**:
+   - Use OpenAPI 3 annotations
+   - Provide detailed API descriptions
+   - Include request/response examples
+
+2. **Code Comments**:
+   - Add comments for complex business logic
+   - Use JavaDoc format
+   - Explain algorithms and design decisions
+
+### Containerization Requirements
+1. **Docker**:
+   - Use multi-stage builds
+   - Optimize image size
+   - Set appropriate environment variables
+
+2. **Kubernetes**:
+   - Configure appropriate resource limits
+   - Implement health checks
+   - Configure logging and monitoring
+
+## Development Guidelines
+
+### Code Quality
+- Follow SOLID principles
+- Write testable code
+- Keep code clean and readable
+- Avoid duplicate code (DRY)
+
+### Error Handling
+- Implement comprehensive error handling
+- Use appropriate exception types
+- Provide useful error messages
+- Log errors
+
+### Security Considerations
+- Input validation and sanitization
+- Prevent SQL injection (even with in-memory storage)
+- Provide appropriate error responses
+
+### Configuration Management
+- Use application.properties for configuration
+- Support different environment configurations
+- Avoid hardcoding configuration values in code
+
+## Special Notes
+
+1. **Data Consistency**: Even with in-memory storage, ensure data consistency and integrity
+2. **Transaction Management**: Implement proper transaction boundaries to avoid data inconsistency
+3. **Memory Limits**: Consider memory usage limits and implement reasonable data management strategies
+4. **Concurrency Control**: Ensure data safety under high concurrency
+
+## Development Workflow
+1. Write test cases first
+2. Implement feature code
+3. Ensure all tests pass
+4. Conduct code review
+5. Update documentation
+6. Deploy and monitor
+
+## Build and Run Commands
+Use the following Makefile commands for development:
+
+### Setup and Build
+- `make setup` - Initialize environment and run tests
+- `make build` - Build Docker images
+- `make test` - Run all tests in container
+
+### Service Management
+- `make run` - Run service in foreground
+- `make start` - Start service in background
+- `make stop` - Stop all services
+- `make status` - Check service status
+
+### Development Tools
+- `make bash` - Enter container bash shell
+- `make clean` - Clean all data and containers
+
+### Testing
+- `make test` - Run all tests using Maven in container
+- Tests are executed in isolated Docker environment
+
+Remember: This is a high-performance financial transaction system. Code quality, test coverage, and performance are all critical requirements. 
