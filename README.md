@@ -114,9 +114,12 @@ Including controller, service test, all tests passed:
 
 ### API Stress Test
 
-Comprehensive stress testing performed on 2C4G test machine with 5000 initial transactions. Two repository data structures were compared: HashMap and SkipListMap.
+API Level comprehensive stress testing performed on 2C4G test machine with 5000 initial transactions. Two repository data structures were compared: HashMap and SkipListMap.
 
 **HashMap Implementation:**
+
+See more in: [tress-results-hash-map.txt](./data/stress-results-hash-map.txt)
+
 | Operation Type      | Success/Total | Failures | Total Time | Throughput   |
 |--------------------|---------------|----------|------------|--------------|
 | Create Transaction | 5000/5000     | 0        | 5430ms     | ~920 req/s   |
@@ -126,9 +129,11 @@ Comprehensive stress testing performed on 2C4G test machine with 5000 initial tr
 | List Transactions  | 5000/5000     | 0        | 4697ms     | ~1064 req/s  |
 | Mixed Operations   | 5000/5000     | 0        | 5368ms     | ~931 ops/s   |
 
-See more in: [stress-results-hash-map.txt](./data/stress-results-hash-map.txt)
 
 **SkipListMap Implementation:**
+
+See more in: [stress-results-skip-list-map.txt](./data/stress-results-skip-list-map.txt)
+
 | Operation Type      | Success/Total | Failures | Total Time | Throughput   |
 |--------------------|---------------|----------|------------|--------------|
 | Create Transaction | 5000/5000     | 0        | 5605ms     | ~892 req/s   |
@@ -138,13 +143,12 @@ See more in: [stress-results-hash-map.txt](./data/stress-results-hash-map.txt)
 | List Transactions  | 5000/5000     | 0        | 1975ms     | ~2532 req/s  |
 | Mixed Operations   | 5000/5000     | 0        | 2413ms     | ~2072 ops/s  |
 
-See more in: [stress-results-skip-list-map.txt](./data/stress-results-skip-list-map.txt)
+**Performance Analysis:**
+- HashMap exhibits inconsistent list performance and variable throughput
+- SkipListMap shows superior overall performance with more stable throughput
+- **Final Implementation:** SkipListMap data structure selected for production use, see [cff627a](https://github.com/songhuangcn/transaction-management/commit/cff627a020b3b73e3b560b291c725415609dcd17)
 
-  **Performance Analysis:**
-  - You can reproduction testing by `make test`, results are displayed in the console
-  - HashMap exhibits inconsistent list performance and variable throughput
-  - SkipListMap shows superior overall performance with more stable throughput
-  - **Final Implementation:** SkipListMap data structure selected for production use
+You can reproduction testing by `make test`(file in: `TransactionStressTest.java`), results are displayed in the console
 
 ### Third-party tool performance testing
 
@@ -159,7 +163,7 @@ kubectl create namespace transaction-management
 kubectl apply -k kubernetes/
 ```
 
-See the sample production server in: https://transaction-management.hdgcs.com (Temporary environmen)
+See the sample production server in: https://transaction-management.hdgcs.com (Temporary environment)
 
 ## Future Plans
 
