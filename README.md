@@ -96,7 +96,21 @@ Once running, access the Swagger UI at:  http://localhost:8080/swagger-ui
 
 ### Unit & Integration Tests
 
-Including controller, service test, all tests passed.
+Including controller, service test, all tests passed:
+
+```bash
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 23, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  24.543 s
+[INFO] Finished at: 2025-07-09T04:27:20Z
+[INFO] ------------------------------------------------------------------------
+```
 
 ### API Stress Test
 

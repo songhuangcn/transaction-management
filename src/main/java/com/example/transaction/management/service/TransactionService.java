@@ -7,7 +7,6 @@ import com.example.transaction.management.repository.TransactionRepository;
 import jakarta.validation.Valid;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.concurrent.locks.ReentrantLock;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -31,7 +30,7 @@ public class TransactionService {
     }
 
     @Cacheable(value = "transactions", key = "#id")
-    public Optional<Transaction> read(UUID id) {
+    public Optional<Transaction> read(Long id) {
         return repository.findById(id);
     }
 
@@ -41,7 +40,7 @@ public class TransactionService {
     }
 
     @CacheEvict(value = "transactions", key = "#id")
-    public Transaction update(UUID id, @Valid Transaction transaction) {
+    public Transaction update(Long id, @Valid Transaction transaction) {
         try {
             lock.lock();
             if (repository.findById(id).isEmpty()) {
@@ -55,7 +54,7 @@ public class TransactionService {
     }
 
     @CacheEvict(value = "transactions", key = "#id")
-    public void delete(UUID id) {
+    public void delete(Long id) {
         try {
             lock.lock();
             if (repository.findById(id).isEmpty()) {

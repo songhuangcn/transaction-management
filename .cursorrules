@@ -7,7 +7,7 @@ This is a transaction management application for a banking system, used to recor
 - **Java**: 21
 - **Spring Boot**: 3.5.3
 - **Build Tool**: Maven
-- **Data Storage**: In-memory (MemoryTransactionRepository)
+- **Data Storage**: In-memory (SkipListTransactionRepository)
 - **API Documentation**: OpenAPI 3 (SpringDoc)
 - **Testing**: JUnit 5, Spring Boot Test
 - **Containerization**: Docker, Kubernetes

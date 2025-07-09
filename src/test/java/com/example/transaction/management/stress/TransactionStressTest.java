@@ -23,7 +23,6 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.UUID;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -72,7 +71,7 @@ public class TransactionStressTest {
 
     private String baseUrl;
     private HttpHeaders headers;
-    private List<UUID> initialDataIds = new ArrayList<>();
+    private List<Long> initialDataIds = new ArrayList<>();
     private Random random;
 
     @BeforeEach
@@ -412,7 +411,7 @@ public class TransactionStressTest {
 
     // ===== Helper methods =====
     
-    private UUID getRandomTransactionId() {
+    private Long getRandomTransactionId() {
         if (initialDataIds.isEmpty()) {
             throw new RuntimeException("Initial data is empty, cannot get random ID");
         }
@@ -438,7 +437,7 @@ public class TransactionStressTest {
 
     private boolean performReadOperation() {
         try {
-            UUID randomId = getRandomTransactionId();
+            Long randomId = getRandomTransactionId();
             ResponseEntity<Transaction> response = restTemplate.getForEntity(baseUrl + "/" + randomId, Transaction.class);
             return processResponse(response);
         } catch (Exception e) {
@@ -461,7 +460,7 @@ public class TransactionStressTest {
 
     private boolean performUpdateOperation(int threadId, int index) {
         try {
-            UUID randomId = getRandomTransactionId();
+            Long randomId = getRandomTransactionId();
             Transaction updateTransaction = new Transaction();
             updateTransaction.setAmount(UPDATED_AMOUNT.add(new BigDecimal(index)));
             updateTransaction.setType(TransactionType.values()[(index + 1) % 3]);
@@ -479,7 +478,7 @@ public class TransactionStressTest {
 
     private boolean performDeleteOperation() {
         try {
-            UUID randomId = getRandomTransactionId();
+            Long randomId = getRandomTransactionId();
             ResponseEntity<Void> response = restTemplate.exchange(
                 baseUrl + "/" + randomId, HttpMethod.DELETE, null, Void.class);
             return processResponse(response);

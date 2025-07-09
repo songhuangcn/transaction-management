@@ -6,12 +6,11 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.Instant;
-import java.util.UUID;
 
 @Schema(description = "Financial Transaction Entity")
 public class Transaction {
-    @Schema(description = "Unique transaction identifier", example = "123e4567-e89b-12d3-a456-426614174000")
-    private UUID id;
+    @Schema(description = "Unique transaction identifier", example = "1001")
+    private Long id;
     
     @Schema(description = "Transaction amount in decimal format", example = "100.50")
     @NotNull(message = "Transaction amount is required")
@@ -34,15 +33,14 @@ public class Transaction {
     private Instant timestamp;
 
     public Transaction() {
-        this.id = UUID.randomUUID();
         this.timestamp = Instant.now();
     }
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

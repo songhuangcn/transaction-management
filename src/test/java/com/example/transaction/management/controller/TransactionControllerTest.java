@@ -21,7 +21,6 @@ import java.time.Instant;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
@@ -44,11 +43,11 @@ public class TransactionControllerTest {
     private ObjectMapper objectMapper;
 
     private Transaction testTransaction;
-    private UUID testId;
+    private Long testId;
 
     @BeforeEach
     void setUp() {
-        testId = UUID.randomUUID();
+        testId = 1001L;
         testTransaction = new Transaction();
         testTransaction.setId(testId);
         testTransaction.setAmount(new BigDecimal("100.00"));
@@ -67,7 +66,7 @@ public class TransactionControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(testTransaction)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(testId.toString()))
+                .andExpect(jsonPath("$.id").value(testId))
                 .andExpect(jsonPath("$.amount").value(100.00))
                 .andExpect(jsonPath("$.type").value("DEPOSIT"))
                 .andExpect(jsonPath("$.description").value("Test transaction description"))
@@ -96,7 +95,7 @@ public class TransactionControllerTest {
         mockMvc.perform(get("/api/transactions/" + testId)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(testId.toString()))
+                .andExpect(jsonPath("$.id").value(testId))
                 .andExpect(jsonPath("$.amount").value(100.00))
                 .andExpect(jsonPath("$.type").value("DEPOSIT"))
                 .andExpect(jsonPath("$.description").value("Test transaction description"))
@@ -124,7 +123,7 @@ public class TransactionControllerTest {
                 .param("size", "10")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].id").value(testId.toString()))
+                .andExpect(jsonPath("$[0].id").value(testId))
                 .andExpect(jsonPath("$[0].amount").value(100.00))
                 .andExpect(jsonPath("$[0].type").value("DEPOSIT"))
                 .andExpect(jsonPath("$[0].description").value("Test transaction description"))
@@ -162,7 +161,7 @@ public class TransactionControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(updatedTransaction)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(testId.toString()))
+                .andExpect(jsonPath("$.id").value(testId))
                 .andExpect(jsonPath("$.amount").value(200.00))
                 .andExpect(jsonPath("$.type").value("WITHDRAWAL"))
                 .andExpect(jsonPath("$.description").value("Updated transaction description"))

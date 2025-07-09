@@ -12,7 +12,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -51,7 +50,7 @@ public class TransactionController {
     @GetMapping("/{id}")
     public ResponseEntity<Transaction> getTransaction(
             @Parameter(description = "Unique transaction identifier", required = true)
-            @PathVariable UUID id) {
+            @PathVariable Long id) {
         Optional<Transaction> transaction = transactionService.read(id);
         return transaction.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
@@ -79,7 +78,7 @@ public class TransactionController {
     @PutMapping("/{id}")
     public ResponseEntity<Transaction> updateTransaction(
             @Parameter(description = "Unique transaction identifier", required = true)
-            @PathVariable UUID id, 
+            @PathVariable Long id, 
             @io.swagger.v3.oas.annotations.parameters.RequestBody(
                 description = "Updated transaction information", 
                 required = true, 
@@ -100,7 +99,7 @@ public class TransactionController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTransaction(
             @Parameter(description = "Unique transaction identifier", required = true)
-            @PathVariable UUID id) {
+            @PathVariable Long id) {
         transactionService.delete(id);
         return ResponseEntity.ok().build();
     }

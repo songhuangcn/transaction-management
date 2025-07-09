@@ -4,7 +4,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: ghcr.io/songhuangcn/transaction-management:0.1.0
+    image: ghcr.io/songhuangcn/transaction-management:0.2.0
     ports:
       - "8080:8080"
     deploy:
@@ -19,7 +19,7 @@ services:
       context: .
       dockerfile: Dockerfile
       target: base
-    image: songhuangcn/transaction-management-base:latest
+    image: ghcr.io/songhuangcn/transaction-management-base:0.2.0
     # Manual build, not auto-built
     # profiles: ["manual"]
     volumes:

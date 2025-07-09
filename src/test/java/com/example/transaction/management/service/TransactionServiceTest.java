@@ -2,7 +2,7 @@ package com.example.transaction.management;
 
 import com.example.transaction.management.model.Transaction;
 import com.example.transaction.management.model.TransactionType;
-import com.example.transaction.management.repository.MemoryTransactionRepository;
+import com.example.transaction.management.repository.SkipListTransactionRepository;
 import com.example.transaction.management.repository.TransactionRepository;
 import com.example.transaction.management.service.TransactionService;
 import com.example.transaction.management.exception.ApiException;
@@ -27,7 +27,7 @@ public class TransactionServiceTest {
 
     @BeforeEach
     void setUp() {
-        repository = new MemoryTransactionRepository();
+        repository = new SkipListTransactionRepository();
         service = new TransactionService(repository);
     }
 

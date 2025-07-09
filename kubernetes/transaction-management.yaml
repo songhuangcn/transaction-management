@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: transaction-management
 spec:
-  replicas: 2
+  replicas: 1 # Not support by memory repository
   selector:
     matchLabels:
       app: transaction-management
